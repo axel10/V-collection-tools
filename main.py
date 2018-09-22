@@ -7,8 +7,13 @@ from io import BytesIO
 import math
 import json
 import sqlite3
+import configparser
 
-conn = sqlite3.connect("E:\music\V collection 11 -NT-\\vc.db")
+config = configparser.ConfigParser()
+config.read('./config.ini')
+
+root_path = config['path']['root']
+conn = sqlite3.connect(config['path']['db'])
 cur = conn.cursor()
 
 
@@ -183,7 +188,6 @@ def deal_mp3(file_path, parents, root_path):
     return obj
 
 
-root_path = u'E:\music\V collection 11 -NT-\lib'
 
 res = get_dirs(u'E:\music\V collection 11 -NT-\lib')
 with open(os.path.join(Path(root_path).resolve().parent, "result.json"), "w+", encoding='utf-8') as json_file:

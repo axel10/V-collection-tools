@@ -1,8 +1,10 @@
 from mutagen import File
 import os
-import math
+import configparser
 
-root_path = u'D:\\nginx\\html\\lib'
+config = configparser.ConfigParser()
+config.read('./config.ini')
+root_path = config['path']['deploy']
 
 def deal_mp3(root_path):
     names = os.listdir(root_path)

@@ -2,10 +2,13 @@ import sqlite3
 import os
 from mutagen.mp4 import MP4
 from mutagen import File
+import configparser
 
-root_path = u'E:\music\V collection 11 -NT-\lib'
+config = configparser.ConfigParser()
+config.read('./config.ini')
+root_path = config['path']['root']
 
-conn = sqlite3.connect("E:\music\V collection 11 -NT-\\vc.db")
+conn = sqlite3.connect(config['path']['db'])
 cur = conn.cursor()
 
 
